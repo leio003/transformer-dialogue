@@ -9,7 +9,7 @@ import torch
 import torch.nn as nn
 from torch.optim.lr_scheduler import StepLR
 from dataset import dailyDataset, collate_func
-from transformer_based import transformer_base
+from transformer_base import transformer_base
 from datetime import datetime
 import argparse
 import random

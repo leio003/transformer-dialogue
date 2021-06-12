@@ -150,12 +150,13 @@ def train(model, word2idx, args):
                     logger.info(
                         "batch {} of epoch {}, loss {}".format(batch_idx + 1, epoch + 1, loss))
                     tb_writer.add_scalar('loss', loss.item(), overall_step)
+
         if ((epoch + 1) % 5 == 0):
             eval_loss = evaluate(model, word2idx, args)
             logger.info('eval loss:{}'.format(eval_loss))
             logger.info('saving model for epoch {}_loss_{}'.format((epoch + 1), eval_loss))
             model_path = join(args.dialogue_model_output_path,
-                            'model_epoch{}.pt'.format(epoch + 1))
+                            'model_epoch{}_{}.pt'.format((epoch + 1), eval_loss))
             torch.save(model, model_path)
 
         logger.info('epoch {} finished'.format(epoch + 1))

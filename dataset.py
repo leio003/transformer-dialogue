@@ -77,13 +77,13 @@ def collate_func(batch_dic):
         src_pad_mask_batch.append(torch.tensor([True]*len(dic['input_ids'])))
         tgt_pad_mask_batch.append(torch.tensor([True]*len(dic['label'])))
     res={}
-    res['src_ids']=pad_sequence(src_ids_batch,batch_first=True)
-    res['tgt_ids']=pad_sequence(tgt_ids_batch,batch_first=True)
-    res['src_pad_mask']=~pad_sequence(src_pad_mask_batch,batch_first=True)
-    res['tgt_pad_mask']=~pad_sequence(tgt_pad_mask_batch,batch_first=True)
+    res['src_ids']=pad_sequence(src_ids_batch, batch_first=True)
+    res['tgt_ids']=pad_sequence(tgt_ids_batch, batch_first=True)
+    res['src_pad_mask']=~pad_sequence(src_pad_mask_batch, batch_first=True)
+    res['tgt_pad_mask']=~pad_sequence(tgt_pad_mask_batch, batch_first=True)
     tgt_length=res['tgt_pad_mask'].shape[1]
     tgt_mask_batch=[torch.tensor([True]*(i+1)) for i in range(tgt_length)]
-    res['tgt_mask']=~pad_sequence(tgt_mask_batch,batch_first=True)
+    res['tgt_mask']=~pad_sequence(tgt_mask_batch, batch_first=True)
     return res
 
 
